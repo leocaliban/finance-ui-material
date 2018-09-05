@@ -15,3 +15,8 @@ table {
   margin: 0 auto;
 }
 
+.col-operacoes{
+  width: 110px;
+  text-align: center;
+}
+

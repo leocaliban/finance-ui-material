@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  colunas: string[] = ['tipo', 'pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor'];
+  colunas: string[] = ['tipo', 'pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'operacoes'];
 
   lancamentos = [
     {
@@ -16,7 +16,8 @@ export class AppComponent {
       dataVencimento: '30/06/2017',
       dataPagamento: null,
       valor: 4.55,
-      pessoa: 'Padaria Pão Novo'
+      pessoa: 'Padaria Pão Novo',
+      cu: 'nada'
     },
     {
       tipo: 'RECEITA',
@@ -51,4 +52,12 @@ export class AppComponent {
       pessoa: 'Zeca'
     }
   ];
+
+  getCorValor(evento: any) {
+    if (evento === 'DESPESA') {
+      return 'red';
+    } else {
+      return 'blue';
+    }
+  }
 }
