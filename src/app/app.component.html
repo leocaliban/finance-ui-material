@@ -28,6 +28,7 @@
   </mat-grid-list>
 
   <div class="add-padding-t">
+      <div class="mat-elevation-z8">
     <table mat-table [dataSource]="lancamentos">
       <ng-container matColumnDef="tipo">
         <th mat-header-cell *matHeaderCellDef> Tipo </th>
@@ -75,7 +76,8 @@
       <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
 
     </table>
-
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
     <mat-grid-list cols="4" rowHeight="80px">
       <mat-grid-tile colspan="4" rowspan="1">
         <div class="add-padding-t full-width">
