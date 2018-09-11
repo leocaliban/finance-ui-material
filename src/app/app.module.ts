@@ -6,11 +6,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { getPtPaginator } from './ptPaginator';
 
 
 
@@ -29,8 +30,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatPaginatorModule,
     MatTooltipModule
+
   ],
-  providers: [],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getPtPaginator() }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
