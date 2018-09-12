@@ -29,5 +29,8 @@
   font-weight: bold;
   color: rgb(49, 49, 49);
   text-transform: uppercase;
+}
 
+.mat-list{
+  padding-top: 0;
 }
