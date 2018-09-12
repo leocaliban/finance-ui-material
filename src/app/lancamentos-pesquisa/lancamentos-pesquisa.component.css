@@ -1,0 +1,21 @@
+.full-width {
+  width: 90%;
+}
+
+.add-padding-r{
+  padding-right: 10px;
+}
+
+.add-padding-t{
+  padding-top: 40px;
+}
+
+table {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.col-operacoes{
+  width: 110px;
+  text-align: center;
+}
