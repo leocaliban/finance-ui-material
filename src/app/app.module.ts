@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getPtPaginator } from './ptPaginator';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatListModule } from '@angular/material';
 
 
 
@@ -33,7 +34,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatListModule
 
   ],
   providers: [

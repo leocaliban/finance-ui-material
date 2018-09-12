@@ -6,3 +6,28 @@
 .navbar-toggle{
   color: #fff;
 }
+
+.navbar-toggle:hover{
+  color: rgb(185, 181, 181);
+}
+
+.navbar-menu {
+  background-color: rgb(211, 211, 211);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 210px;
+  margin: 0;
+  z-index: 999;
+  list-style: none;
+  padding: 0;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-usuario{
+  font-weight: bold;
+  color: rgb(49, 49, 49);
+  text-transform: uppercase;
+
+}
