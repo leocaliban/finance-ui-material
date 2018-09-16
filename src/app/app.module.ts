@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getPtPaginator } from './ptPaginator';
@@ -16,6 +18,7 @@ import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatListModule } from '@angular/material';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 
 
 
@@ -24,7 +27,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     AppComponent,
     LancamentosPesquisaComponent,
     NavbarComponent,
-    PessoasPesquisaComponent
+    PessoasPesquisaComponent,
+    LancamentoCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     MatIconModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule
 
   ],
   providers: [

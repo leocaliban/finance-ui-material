@@ -12,9 +12,14 @@ label{
   font-weight: bold;
 }
 
+.container {
+  width: 96vw;
+  margin: 0 auto;
+}
+
 @media (min-width: 1200px){
   .container {
-    width: 1170px;
+    width: 1150px;
     margin: 0 auto;
   }
 }

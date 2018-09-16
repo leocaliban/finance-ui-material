@@ -28,7 +28,6 @@
 
     <mat-grid-tile colspan="4" rowspan="{{pageSize}}">
       <div class="full-width">
-        <div class="mat-elevation-z8">
           <table mat-table [dataSource]="lancamentos">
             <ng-container matColumnDef="tipo">
               <th mat-header-cell *matHeaderCellDef> Tipo </th>
@@ -81,7 +80,6 @@
           <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="getTamanhoTabela($event)"></mat-paginator>
         </div>
 
-      </div>
     </mat-grid-tile>
 
     <mat-grid-tile colspan="4" rowspan="1">

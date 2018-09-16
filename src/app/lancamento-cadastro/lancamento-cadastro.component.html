@@ -1,0 +1,60 @@
+<div class="container">
+  <form>
+    <div fxLayout="row">
+      <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <h1>Novo Lançamento</h1>
+      </div>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs="30%" fxFlex.lt-sm="80%">
+        <input matInput placeholder="Vencimento">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Recebimento">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='80%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Descrição">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='20%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Valor">
+        <span matPrefix>R$&nbsp;</span>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Categoria">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Pessoa">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
+        <textarea matInput placeholder="Observação"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px" >
+      <button mat-flat-button color="primary">Salvar
+        <mat-icon aria-label="Salvar">save_alt</mat-icon>
+      </button>
+
+      <button mat-stroked-button color="primary">Novo
+        <mat-icon aria-label="Novo">person_outline</mat-icon>
+      </button>
+
+      <a mat-button routerLink=".">Voltar para a pesquisa</a>
+    </div>
+
+
+  </form>
+</div>

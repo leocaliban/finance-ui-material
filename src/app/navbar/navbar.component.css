@@ -9,6 +9,7 @@
 
 .navbar-toggle:hover{
   color: rgb(185, 181, 181);
+  transition: all 400ms ease;
 }
 
 .navbar-menu {
