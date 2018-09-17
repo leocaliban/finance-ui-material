@@ -6,13 +6,20 @@
       </div>
     </div>
 
-    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
-      <mat-form-field fxFlex.gt-xs="30%" fxFlex.lt-sm="80%">
-        <input matInput placeholder="Vencimento">
+    <div fxLayout="row" fxLayoutGap.gt-xs="30px" fxLayoutGap.lt-sm="30px">
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="46%">
+        <!-- for datepicker works -->
+        <!-- npm i @angular/material-moment-adapter --save -->
+        <!-- npm i moment --save -->
+        <input matInput [matDatepicker]="vencimento" placeholder="Vencimento">
+        <mat-datepicker-toggle matSuffix [for]="vencimento"></mat-datepicker-toggle>
+        <mat-datepicker #vencimento></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Recebimento">
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="46%">
+          <input matInput [matDatepicker]="recebimento" placeholder="Recebimento">
+          <mat-datepicker-toggle matSuffix [for]="recebimento"></mat-datepicker-toggle>
+          <mat-datepicker #recebimento color="warn"></mat-datepicker>
       </mat-form-field>
     </div>
 
@@ -37,22 +44,22 @@
       </mat-form-field>
     </div>
 
-    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
-      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
+    <div fxLayout="row" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="100%">
         <textarea matInput placeholder="Observação"></textarea>
       </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px" >
+    <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
       <button mat-flat-button color="primary">Salvar
         <mat-icon aria-label="Salvar">save_alt</mat-icon>
       </button>
 
       <button mat-stroked-button color="primary">Novo
-        <mat-icon aria-label="Novo">person_outline</mat-icon>
+        <mat-icon aria-label="Novo">add</mat-icon>
       </button>
 
-      <a mat-button routerLink=".">Voltar para a pesquisa</a>
+      <a mat-button routerLink=".">Voltar</a>
     </div>
 
 
