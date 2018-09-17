@@ -1,0 +1,61 @@
+<div class="container">
+  <form>
+    <div fxLayout="row">
+      <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <h1>Nova Pessoa</h1>
+      </div>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column">
+      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Nome">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='70%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Logradouro">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Número">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Complemento">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='40%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Bairro">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="CEP">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
+      <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Cidade">
+      </mat-form-field>
+
+      <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
+        <input matInput placeholder="Estado">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
+      <button mat-flat-button color="primary">Salvar
+        <mat-icon aria-label="Salvar">save_alt</mat-icon>
+      </button>
+
+      <button mat-stroked-button color="primary">Novo
+        <mat-icon aria-label="Novo">add</mat-icon>
+      </button>
+
+      <a mat-button routerLink=".">Voltar</a>
+    </div>
+  </form>
+</div>
