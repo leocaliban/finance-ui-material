@@ -1,9 +1,15 @@
 <div class="container">
   <form>
-    <div fxLayout="row">
+    <div fxLayout="row" >
       <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
         <h1>Novo Lançamento</h1>
       </div>
+    </div>
+
+    <div style="height: 70px;" fxLayout="row" fxLayoutAlign="start center" >
+      <mat-button-toggle-group #group="matButtonToggleGroup">
+        <mat-button-toggle value="{{tipo.value}}" *ngFor="let tipo of tipos">{{tipo.value}}</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
 
     <div fxLayout="row" fxLayoutGap.gt-xs="30px" fxLayoutGap.lt-sm="30px">
@@ -17,9 +23,9 @@
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="46%">
-          <input matInput [matDatepicker]="recebimento" placeholder="Recebimento">
-          <mat-datepicker-toggle matSuffix [for]="recebimento"></mat-datepicker-toggle>
-          <mat-datepicker #recebimento color="warn"></mat-datepicker>
+        <input matInput [matDatepicker]="recebimento" placeholder="{{group.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}">
+        <mat-datepicker-toggle matSuffix [for]="recebimento"></mat-datepicker-toggle>
+        <mat-datepicker #recebimento color="warn"></mat-datepicker>
       </mat-form-field>
     </div>
 

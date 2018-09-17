@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getPtPaginator } from './ptPaginator';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatListModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatListModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule } from '@angular/material';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -46,7 +46,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     FlexLayoutModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonToggleModule
 
 
   ],
