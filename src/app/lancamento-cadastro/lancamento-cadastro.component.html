@@ -35,7 +35,7 @@
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='20%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Valor">
+        <input matInput placeholder="Valor" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }">
         <span matPrefix>R$&nbsp;</span>
       </mat-form-field>
     </div>

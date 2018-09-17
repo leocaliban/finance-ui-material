@@ -20,6 +20,7 @@ import { MatListModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggl
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 
 
@@ -48,7 +49,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatMomentDateModule,
     MatNativeDateModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    CurrencyMaskModule
 
 
   ],
