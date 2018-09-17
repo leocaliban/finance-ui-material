@@ -1,12 +1,12 @@
 <div class="container">
   <form>
-    <div fxLayout="row" >
+    <div fxLayout="row">
       <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
         <h1>Novo Lançamento</h1>
       </div>
     </div>
 
-    <div style="height: 70px;" fxLayout="row" fxLayoutAlign="start center" >
+    <div style="height: 70px;" fxLayout="row" fxLayoutAlign="start center">
       <mat-button-toggle-group #group="matButtonToggleGroup">
         <mat-button-toggle value="{{tipo.value}}" *ngFor="let tipo of tipos">{{tipo.value}}</mat-button-toggle>
       </mat-button-toggle-group>
@@ -42,11 +42,19 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Categoria">
+        <mat-select placeholder="Categoria" name="categoria">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">
+            {{categoria.label}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Pessoa">
+        <mat-select placeholder="Pessoa" name="pessoa">
+          <mat-option *ngFor="let pessoa of pessoas" [value]="pessoa.value">
+            {{pessoa.label}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
