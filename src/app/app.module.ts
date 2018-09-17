@@ -22,6 +22,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 
@@ -52,7 +53,8 @@ import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.compo
     MatNativeDateModule,
     MatButtonToggleModule,
     MatSelectModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    NgxMaskModule.forRoot()
 
 
   ],
