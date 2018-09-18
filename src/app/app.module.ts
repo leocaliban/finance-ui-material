@@ -23,6 +23,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import {NgxMaskModule} from 'ngx-mask';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -54,6 +55,8 @@ import {NgxMaskModule} from 'ngx-mask';
     MatButtonToggleModule,
     MatSelectModule,
     CurrencyMaskModule,
+    ReactiveFormsModule,
+    FormsModule,
     NgxMaskModule.forRoot()
 
 

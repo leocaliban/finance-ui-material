@@ -31,7 +31,8 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='80%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Descrição">
+        <input matInput placeholder="Descrição" [formControl]="descricao" required minlength="5">
+        <mat-error *ngIf="descricao.invalid">{{ informarErro() }}</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='20%' fxFlex.lt-sm="80%">
