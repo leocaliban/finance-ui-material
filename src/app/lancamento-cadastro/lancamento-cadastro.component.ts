@@ -15,8 +15,6 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LancamentoCadastroComponent implements OnInit {
 
-  descricao = new FormControl('', [Validators.required]);
-
   tipos = [
     { label: 'Receita', value: 'RECEITA' },
     { label: 'Despesa', value: 'DESPESA' }
@@ -35,12 +33,6 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  informarErro() {
-    return this.descricao.hasError('required') ? 'Informe uma descrição.' :
-      this.descricao.hasError('minlength') ? 'Mínimo de 5 caracteres.' :
-        '';
   }
 
 }

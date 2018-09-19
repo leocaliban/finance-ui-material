@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #pessoaForm="ngForm">
     <div fxLayout="row">
       <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
         <h1>Nova Pessoa</h1>
@@ -8,17 +8,21 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column">
       <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Nome">
+        <input matInput placeholder="Nome" name="nome" ngModel #nome="ngModel" required minlength="5">
+        <mat-error *ngIf="nome.hasError('required') && nome.dirty">Informe o nome.</mat-error>
+        <mat-error *ngIf="nome.hasError('minlength') && nome.dirty">Mínimo de 5 caracteres.</mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='70%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Logradouro">
+        <input matInput placeholder="Logradouro" name="logradouro" ngModel #logradouro="ngModel" required>
+        <mat-error *ngIf="logradouro.hasError('required') && logradouro.dirty">Informe o logradouro.</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Número">
+        <input matInput placeholder="Número" name="numero" ngModel #numero="ngModel" required>
+        <mat-error *ngIf="numero.hasError('required') && numero.dirty">Informe o número.</mat-error>
       </mat-form-field>
     </div>
 
@@ -28,26 +32,30 @@
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='40%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Bairro">
+        <input matInput placeholder="Bairro" name="bairro" ngModel #bairro="ngModel" required>
+        <mat-error *ngIf="bairro.hasError('required') && bairro.dirty">Informe o bairro.</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="80%">
-          <input matInput type='text' mask='00.000-000' placeholder="CEP">
+          <input matInput type='text' mask='00.000-000' placeholder="CEP" name="cep" ngModel #cep="ngModel" required>
+          <mat-error *ngIf="cep.hasError('required') && cep.dirty">Informe o CEP.</mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Cidade">
+        <input matInput placeholder="Cidade" name="cidade" ngModel #cidade="ngModel" required>
+        <mat-error *ngIf="cidade.hasError('required') && cidade.dirty">Informe a cidade.</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Estado">
+        <input matInput placeholder="Estado" name="estado" ngModel #estado="ngModel" required>
+        <mat-error *ngIf="estado.hasError('required') && estado.dirty">Informe o estado.</mat-error>
       </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
-      <button mat-flat-button color="primary">Salvar
+      <button mat-flat-button color="primary" [disabled]="!pessoaForm.valid">Salvar
         <mat-icon aria-label="Salvar">save_alt</mat-icon>
       </button>
 
