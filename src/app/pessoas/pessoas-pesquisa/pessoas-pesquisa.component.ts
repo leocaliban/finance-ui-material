@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatTableDataSource, MatPaginator } from '@angular/material';
-import { Lancamento } from '../lancamentos-pesquisa/lancamentos-pesquisa.component';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
