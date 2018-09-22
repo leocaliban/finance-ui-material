@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule, MatListModule } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatIconModule, MatListModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -14,4 +14,4 @@ import { NavbarComponent } from './navbar/navbar.component';
   declarations: [NavbarComponent],
   exports: [NavbarComponent]
 })
-export class CompartilhadoModule { }
+export class CoreModule { }

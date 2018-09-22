@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { getPtPaginator } from './ptPaginator';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { CompartilhadoModule } from './compartilhado/compartilhado.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { CompartilhadoModule } from './compartilhado/compartilhado.module';
     BrowserModule,
     LancamentosModule,
     PessoasModule,
-    CompartilhadoModule
+    CoreModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getPtPaginator() }
