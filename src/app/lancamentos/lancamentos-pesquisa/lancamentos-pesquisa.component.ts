@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator, MatTableDataSource } from '@angular/material';
+import { LancamentoService } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -11,17 +12,21 @@ export class LancamentosPesquisaComponent implements OnInit {
   colunas: string[] = ['tipo', 'pessoa', 'descricao', 'dataVencimento', 'dataPagamento', 'valor', 'operacoes'];
   pageSize = 5;
 
-  pageEvent: PageEvent;
-
-  lancamentos = new MatTableDataSource<Lancamento>(LANCAMENTO_DATA);
+  lancamentos = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private lancamentoService: LancamentoService) { }
 
   ngOnInit() {
+    this.pesquisar();
     this.lancamentos.paginator = this.paginator;
   }
+
+  pesquisar() {
+    this.lancamentoService.pesquisar().then(lancamentos => this.lancamentos.data = lancamentos);
+  }
+
   getCorValor(evento: any) {
     if (evento === 'DESPESA') {
       return 'red';
@@ -48,62 +53,10 @@ export class LancamentosPesquisaComponent implements OnInit {
       } else if (event.length % 20 > 5 && event.length % 20 <= 10 && event.pageIndex === Math.trunc(paginas)) {
         this.pageSize = 8;
       } else if (event.length % 20 > 10 && event.length % 20 <= 15 && event.pageIndex === Math.trunc(paginas)) {
-        this.pageSize = 10;
+        this.pageSize = 11;
       } else {
         this.pageSize = 14;
       }
     }
   }
 }
-export interface Lancamento {
-  tipo: string;
-  descricao: string;
-  dataVencimento: Date;
-  dataPagamento: Date;
-  valor: number;
-  pessoa: string;
-}
-
-const LANCAMENTO_DATA: Lancamento[] = [
-  {
-    tipo: 'DESPESA',
-    descricao: 'Compra de pão',
-    dataVencimento: new Date(2017, 6, 30),
-    dataPagamento: null,
-    valor: 4.55,
-    pessoa: 'Padaria Pão Novo'
-  },
-  {
-    tipo: 'RECEITA',
-    descricao: 'Aluguel',
-    dataVencimento: new Date(2018, 3, 11),
-    dataPagamento: new Date(2018, 3, 11),
-    valor: 220.00,
-    pessoa: 'Jack Bauer'
-  },
-  {
-    tipo: 'DESPESA',
-    descricao: 'Conta de Água',
-    dataVencimento: new Date(2018, 5, 11),
-    dataPagamento: null,
-    valor: 100.00,
-    pessoa: 'James Lancer'
-  },
-  {
-    tipo: 'RECEITA',
-    descricao: 'Salário',
-    dataVencimento: new Date(2018, 9, 11),
-    dataPagamento: new Date(2018, 6, 19),
-    valor: 990.00,
-    pessoa: 'Rafael Lima'
-  },
-  {
-    tipo: 'DESPESA',
-    descricao: 'Cervejas',
-    dataVencimento: new Date(2018, 5, 4),
-    dataPagamento: new Date(2018, 5, 4),
-    valor: 90000.00,
-    pessoa: 'Zeca'
-  }
-];
-
