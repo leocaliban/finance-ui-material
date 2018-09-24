@@ -13,6 +13,7 @@ export class LancamentosPesquisaComponent implements OnInit {
   pageSize = 5;
 
   lancamentos = new MatTableDataSource();
+  descricao: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -24,7 +25,8 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar().then(lancamentos => this.lancamentos.data = lancamentos);
+    this.lancamentoService.pesquisar({ descricao: this.descricao })
+      .then(lancamentos => this.lancamentos.data = lancamentos);
   }
 
   getCorValor(evento: any) {
