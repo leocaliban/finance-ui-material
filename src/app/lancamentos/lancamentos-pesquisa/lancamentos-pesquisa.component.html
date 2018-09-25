@@ -18,10 +18,15 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field>
-        <input matInput placeholder="De">
+        <mat-datepicker #dataInicio></mat-datepicker>
+        <input matInput [matDatepicker]="dataInicio" placeholder="De" name="dataVencimentoInicio" [(ngModel)]="dataVencimentoInicio">
+        <mat-datepicker-toggle matSuffix [for]="dataInicio"></mat-datepicker-toggle>
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput placeholder="Até">
+        <mat-datepicker #dataFim color="warn"></mat-datepicker>
+        <input matInput [matDatepicker]="dataFim" placeholder="Até" name="dataVencimentoFim" [(ngModel)]="dataVencimentoFim">
+        <mat-datepicker-toggle matSuffix [for]="dataFim"></mat-datepicker-toggle>
       </mat-form-field>
     </div>
 

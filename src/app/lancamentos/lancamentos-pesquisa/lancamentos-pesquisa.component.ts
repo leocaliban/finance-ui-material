@@ -1,11 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatPaginator, MatTableDataSource } from '@angular/material';
-import { LancamentoService } from '../lancamento.service';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+
+import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
-  styleUrls: ['./lancamentos-pesquisa.component.css']
+  styleUrls: ['./lancamentos-pesquisa.component.css'],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
+  ]
 })
 export class LancamentosPesquisaComponent implements OnInit {
 
@@ -14,6 +22,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   lancamentos = new MatTableDataSource();
   descricao: string;
+  dataVencimentoInicio: Date;
+  dataVencimentoFim: Date;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -25,7 +35,12 @@ export class LancamentosPesquisaComponent implements OnInit {
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar({ descricao: this.descricao })
+    const filtro: LancamentoFiltro = {
+      descricao: this.descricao,
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    };
+    this.lancamentoService.pesquisar(filtro)
       .then(lancamentos => this.lancamentos.data = lancamentos);
   }
 
