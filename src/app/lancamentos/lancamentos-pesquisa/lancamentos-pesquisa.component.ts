@@ -51,29 +51,4 @@ export class LancamentosPesquisaComponent implements OnInit {
       return 'blue';
     }
   }
-
-  getTamanhoTabela(event: PageEvent) {
-
-    if (event.pageSize === 5) {
-      this.pageSize = 5;
-    } else if (event.pageSize === 10) {
-      const paginas: number = event.length / 10;
-      if (event.length % 10 <= 5 && event.pageIndex === Math.trunc(paginas)) {
-        this.pageSize = 5;
-      } else {
-        this.pageSize = 8;
-      }
-    } else if (event.pageSize === 20) {
-      const paginas: number = event.length / 20;
-      if (event.length % 20 <= 5 && event.pageIndex === Math.trunc(paginas)) {
-        this.pageSize = 5;
-      } else if (event.length % 20 > 5 && event.length % 20 <= 10 && event.pageIndex === Math.trunc(paginas)) {
-        this.pageSize = 8;
-      } else if (event.length % 20 > 10 && event.length % 20 <= 15 && event.pageIndex === Math.trunc(paginas)) {
-        this.pageSize = 11;
-      } else {
-        this.pageSize = 14;
-      }
-    }
-  }
 }
