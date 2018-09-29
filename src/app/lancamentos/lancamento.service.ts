@@ -22,8 +22,7 @@ export class LancamentoService {
     const parametros = new URLSearchParams();
     const headers = new Headers();
 
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJsZW9jYWxpYmFuQGZpbmFuY2UuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTM3OTg2OTc4LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI1OGM2MTE5YS03MmI0LTRjODctODQ2YS1iYzUzN2IyZWU3YzEiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.pZk-MMBTPeLoeR_RqOvKQb2Mnejtkg-BKj6gmaEilIM');
+    this.adicionarAuthorization(headers);
 
     if (filtro.descricao) { // Se vier alguma informação no filtro
       parametros.set('descricao', filtro.descricao); // Adicine a informação do filtro no valor
@@ -41,5 +40,21 @@ export class LancamentoService {
       { headers, search: parametros })
       .toPromise()
       .then(response => response.json().content);
+  }
+
+  excluir(codigo: number): Promise<void> {
+
+    const headers = new Headers();
+
+    this.adicionarAuthorization(headers);
+
+    return this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(() => null);
+  }
+
+  adicionarAuthorization(headers: Headers) {
+    // tslint:disable-next-line:max-line-length
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJsZW9jYWxpYmFuQGZpbmFuY2UuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoxNTM4MjUxMjg2LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiIzM2ZlMDk0ZS1mMDU0LTQyMDctYTQxZC05Y2UzMDYwMzBkYjYiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.IQzyTGWheur981utedsLtAMj9PKdfeIBnKJztCZGsKw');
   }
 }

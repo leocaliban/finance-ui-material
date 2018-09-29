@@ -44,6 +44,13 @@ export class LancamentosPesquisaComponent implements OnInit {
       .then(lancamentos => this.lancamentos.data = lancamentos);
   }
 
+  excluir(lancamento: any) {
+    this.lancamentoService.excluir(lancamento.codigo)
+      .then(() => {
+        this.pesquisar();
+      });
+  }
+
   getCorValor(evento: any) {
     if (evento === 'DESPESA') {
       return 'red';
