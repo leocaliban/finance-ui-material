@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import {ToastyModule} from 'ng2-toasty';
 
 import { AppComponent } from './app.component';
 import { getPtPaginator } from './ptPaginator';
@@ -21,7 +22,8 @@ import { PessoaService } from './pessoas/pessoa.service';
     LancamentosModule,
     PessoasModule,
     CoreModule,
-    HttpModule
+    HttpModule,
+    ToastyModule.forRoot()
   ],
   providers: [
     LancamentoService,

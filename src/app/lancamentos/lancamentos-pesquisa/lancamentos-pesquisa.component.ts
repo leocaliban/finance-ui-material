@@ -4,6 +4,7 @@ import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/materia
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -27,7 +28,9 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(
+    private lancamentoService: LancamentoService,
+    private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -48,6 +51,12 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         this.pesquisar();
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: 'Lançamento escluído.',
+          showClose: true,
+          timeout: 4000
+      });
       });
   }
 
