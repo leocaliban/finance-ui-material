@@ -6,6 +6,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-mo
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { ToastyService } from 'ng2-toasty';
 import Swal from 'sweetalert2';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -31,7 +32,8 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private toastyService: ToastyService) { }
+    private toastyService: ToastyService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -45,7 +47,8 @@ export class LancamentosPesquisaComponent implements OnInit {
       dataVencimentoFim: this.dataVencimentoFim
     };
     this.lancamentoService.pesquisar(filtro)
-      .then(lancamentos => this.lancamentos.data = lancamentos);
+      .then(lancamentos => this.lancamentos.data = lancamentos)
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   excluir(lancamento: any) {
@@ -54,11 +57,12 @@ export class LancamentosPesquisaComponent implements OnInit {
         this.pesquisar();
         this.toastyService.success({
           title: 'Sucesso!',
-          msg: 'Lançamento escluído.',
+          msg: 'Lançamento excluído.',
           showClose: true,
           timeout: 4000
         });
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   getCorValor(evento: any) {
