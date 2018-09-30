@@ -5,6 +5,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-mo
 
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { ToastyService } from 'ng2-toasty';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -56,7 +57,7 @@ export class LancamentosPesquisaComponent implements OnInit {
           msg: 'Lançamento escluído.',
           showClose: true,
           timeout: 4000
-      });
+        });
       });
   }
 
@@ -66,5 +67,22 @@ export class LancamentosPesquisaComponent implements OnInit {
     } else {
       return 'blue';
     }
+  }
+
+  confirmarExclusao(lancamento: any) {
+    Swal({
+      title: 'Confirmação',
+      text: 'Tem certeza que deseja excluir?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, exclua!',
+      cancelButtonText: 'Não'
+    }).then((result) => {
+      if (result.value) {
+        this.excluir(lancamento);
+      }
+    });
   }
 }
