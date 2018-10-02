@@ -4,6 +4,7 @@ import { PageEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { PessoaFiltro } from '../pessoa.service';
 import { ToastyService } from 'ng2-toasty';
 import Swal from 'sweetalert2';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -24,7 +25,8 @@ export class PessoasPesquisaComponent implements OnInit {
 
   constructor(
     private pessoaService: PessoaService,
-    private toastyService: ToastyService) { }
+    private toastyService: ToastyService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -33,7 +35,8 @@ export class PessoasPesquisaComponent implements OnInit {
 
   pesquisar() {
     this.pessoaService.pesquisarPorNome(this.filtro)
-      .then(response => this.pessoas.data = response);
+      .then(response => this.pessoas.data = response)
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   excluir(pessoa: any) {
@@ -42,11 +45,12 @@ export class PessoasPesquisaComponent implements OnInit {
         this.pesquisar();
         this.toastyService.success({
           title: 'Sucesso!',
-          msg: 'Pessoa escluída.',
+          msg: 'Pessoa excluída.',
           showClose: true,
           timeout: 4000
         });
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 
