@@ -2,6 +2,7 @@ import { PessoaService } from './../pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { PessoaFiltro } from '../pessoa.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -20,7 +21,9 @@ export class PessoasPesquisaComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private pessoaService: PessoaService) { }
+  constructor(
+    private pessoaService: PessoaService,
+    private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -36,6 +39,12 @@ export class PessoasPesquisaComponent implements OnInit {
     this.pessoaService.excluir(pessoa.codigo)
       .then(() => {
         this.pesquisar();
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: 'Pessoa escluída.',
+          showClose: true,
+          timeout: 4000
+        });
       });
   }
 }
