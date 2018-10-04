@@ -39,7 +39,7 @@
         <ng-container matColumnDef="ativo">
           <th mat-header-cell *matHeaderCellDef class="col-status"> Status </th>
           <td mat-cell *matCellDef="let element" class="col-status">
-            <a mat-button routerLink="." [matTooltip]="element.ativo ? 'Desativar' : 'Ativar'" matTooltipPosition="above">
+            <a mat-button routerLink="." [matTooltip]="element.ativo ? 'Desativar' : 'Ativar'" matTooltipPosition="above" (click)="mudarStatus(element)">
               {{element.ativo ? 'Ativo' : 'Inativo'}}
             </a>
           </td>

@@ -53,6 +53,24 @@ export class PessoasPesquisaComponent implements OnInit {
       .catch(erro => this.errorHandler.handle(erro));
   }
 
+  mudarStatus(pessoa: any): void {
+    const novoStatus = !pessoa.ativo;
+
+    this.pessoaService.mudarStatus(pessoa.codigo, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'desativada';
+
+        pessoa.ativo = novoStatus;
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: `Pessoa ${acao} com sucesso!`,
+          showClose: true,
+          timeout: 4000
+        });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
 
   confirmarExclusao(pessoa: any) {
     Swal({
