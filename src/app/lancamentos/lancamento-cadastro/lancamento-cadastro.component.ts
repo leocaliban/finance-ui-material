@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import { CategoriaService } from '../../categorias/categoria.service';
+import { ErrorHandlerService } from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -19,19 +21,28 @@ export class LancamentoCadastroComponent implements OnInit {
     { label: 'Despesa', value: 'DESPESA' }
   ];
 
-  categorias = [
-    { label: 'Alimentação', value: '1' },
-    { label: 'Transporte', value: '2' }
-  ];
+  categorias = [];
 
   pessoas = [
     { label: 'Aline Silva', value: '1' },
     { label: 'Nina Myers', value: '2' },
     { label: 'Kim Bauer', value: '3' }
   ];
-  constructor() { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
+    this.carregarCategorias();
   }
 
+  carregarCategorias() {
+    return this.categoriaService.pesquisarTodos()
+      .then(response => {
+        this.categorias = response.map(elemento => {
+          return { label: elemento.nome, value: elemento.codigo };
+        });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
 }

@@ -11,6 +11,7 @@ import { getPtPaginator } from '../ptPaginator';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { CategoriaService } from '../categorias/categoria.service';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -30,6 +31,7 @@ registerLocaleData(localePt);
     ErrorHandlerService,
     LancamentoService,
     PessoaService,
+    CategoriaService,
     { provide: MatPaginatorIntl, useValue: getPtPaginator() },
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
