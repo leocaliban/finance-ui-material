@@ -4,6 +4,10 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-mo
 import { CategoriaService } from '../../categorias/categoria.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { PessoaService } from '../../pessoas/pessoa.service';
+import { Lancamento } from '../../core/domain/lancamento';
+import { LancamentoService } from '../lancamento.service';
+import { FormControl } from '@angular/forms';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -24,15 +28,34 @@ export class LancamentoCadastroComponent implements OnInit {
 
   categorias = [];
   pessoas = [];
+  lancamento = new Lancamento();
 
   constructor(
     private categoriaService: CategoriaService,
     private errorHandler: ErrorHandlerService,
-    private pessoaService: PessoaService) { }
+    private pessoaService: PessoaService,
+    private lancamentoService: LancamentoService,
+    private toastyService: ToastyService) { }
 
   ngOnInit() {
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  salvar(form: FormControl) {
+    this.lancamentoService.salvar(this.lancamento)
+      .then(() => {
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: 'O Lançamento foi salvo.',
+          showClose: true,
+          timeout: 4000
+        });
+        form.reset();
+
+        this.lancamento = new Lancamento();
+      })
+      ;
   }
 
   carregarCategorias() {

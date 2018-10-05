@@ -1,5 +1,5 @@
 <div class="container">
-  <form #lancamentoForm="ngForm">
+  <form #lancamentoForm="ngForm" (ngSubmit)="salvar(lancamentoForm)">
     <div fxLayout="row">
       <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
         <h1>Novo Lançamento</h1>
@@ -7,7 +7,7 @@
     </div>
 
     <div style="height: 70px;" fxLayout="row" fxLayoutAlign="start center">
-      <mat-button-toggle-group #group="matButtonToggleGroup" name="tipoBotao" ngModel #tipoBotao="ngModel" required>
+      <mat-button-toggle-group #group="matButtonToggleGroup" name="tipoBotao" #tipoBotao="ngModel" required [(ngModel)]="lancamento.tipo">
         <mat-button-toggle value="{{tipo.value}}" *ngFor="let tipo of tipos">{{tipo.value}}</mat-button-toggle>
       </mat-button-toggle-group>
       <mat-error *ngIf="tipoBotao.hasError('required') && tipoBotao.dirty">Selecione um tipo de lançamento.</mat-error>
@@ -18,15 +18,16 @@
         <!-- for datepicker works -->
         <!-- npm i @angular/material-moment-adapter --save -->
         <!-- npm i moment --save -->
-        <input matInput [matDatepicker]="vencimento" placeholder="Vencimento" name="dataVencimento" ngModel
-          #dataVencimento="ngModel" required>
+        <input matInput [matDatepicker]="vencimento" placeholder="Vencimento" name="dataVencimento" #dataVencimento="ngModel"
+          required [(ngModel)]="lancamento.dataVencimento">
         <mat-datepicker-toggle matSuffix [for]="vencimento"></mat-datepicker-toggle>
         <mat-datepicker #vencimento></mat-datepicker>
         <mat-error *ngIf="dataVencimento.hasError('required') && dataVencimento.dirty">Informe uma data de vencimento.</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='30%' fxFlex.lt-sm="46%">
-        <input matInput [matDatepicker]="recebimento" placeholder="{{group.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}">
+        <input matInput [matDatepicker]="recebimento" placeholder="{{group.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}"
+          [(ngModel)]="lancamento.dataPagamento" name="dataPagamento">
         <mat-datepicker-toggle matSuffix [for]="recebimento"></mat-datepicker-toggle>
         <mat-datepicker #recebimento color="warn"></mat-datepicker>
       </mat-form-field>
@@ -34,14 +35,15 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='80%' fxFlex.lt-sm="80%">
-        <input matInput placeholder="Descrição" name="descricao" ngModel #descricao="ngModel" required minlength="5">
+        <input matInput placeholder="Descrição" name="descricao" #descricao="ngModel" required minlength="5"
+          [(ngModel)]="lancamento.descricao">
         <mat-error *ngIf="descricao.hasError('required') && descricao.dirty">Informe a Descrição.</mat-error>
         <mat-error *ngIf="descricao.hasError('minlength') && descricao.dirty">Mínimo de 5 caracteres.</mat-error>
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='20%' fxFlex.lt-sm="80%">
         <input matInput placeholder="Valor" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
-          name="valor" ngModel #valor="ngModel" required>
+          name="valor" #valor="ngModel" required [(ngModel)]="lancamento.valor">
         <span matPrefix>R$&nbsp;</span>
         <mat-error *ngIf="valor.hasError('required') && valor.dirty">Informe o valor.</mat-error>
       </mat-form-field>
@@ -49,7 +51,7 @@
 
     <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <mat-select placeholder="Categoria" name="categoria" ngModel #vcategoria="ngModel" required>
+        <mat-select placeholder="Categoria" name="categoria" #vcategoria="ngModel" required [(ngModel)]="lancamento.categoria.codigo">
           <mat-option *ngFor="let categoria of categorias" [value]="categoria.value">
             {{categoria.label}}
           </mat-option>
@@ -58,7 +60,7 @@
       </mat-form-field>
 
       <mat-form-field fxFlex.gt-xs='50%' fxFlex.lt-sm="80%">
-        <mat-select placeholder="Pessoa" name="pessoa" ngModel #vpessoa="ngModel" required>
+        <mat-select placeholder="Pessoa" name="pessoa" #vpessoa="ngModel" required [(ngModel)]="lancamento.pessoa.codigo">
           <mat-option *ngFor="let pessoa of pessoas" [value]="pessoa.value">
             {{pessoa.label}}
           </mat-option>
@@ -69,22 +71,21 @@
 
     <div fxLayout="row" fxLayoutGap.gt-xs="30px">
       <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="100%">
-        <textarea matInput placeholder="Observação"></textarea>
+        <textarea matInput placeholder="Observação" name="observacao" [(ngModel)]="lancamento.observacao"></textarea>
       </mat-form-field>
     </div>
 
     <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
-      <button mat-flat-button color="primary" [disabled]="!lancamentoForm.valid">Salvar
+      <button type="submit" mat-flat-button color="primary" [disabled]="!lancamentoForm.valid">Salvar
         <mat-icon aria-label="Salvar">save_alt</mat-icon>
       </button>
 
-      <button mat-stroked-button color="primary">Novo
+      <button type="button" mat-stroked-button color="primary">Novo
         <mat-icon aria-label="Novo">add</mat-icon>
       </button>
 
       <a mat-button routerLink=".">Voltar</a>
     </div>
-
 
   </form>
 </div>
