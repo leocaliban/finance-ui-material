@@ -12,6 +12,7 @@ import { getPtPaginator } from '../ptPaginator';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { CategoriaService } from '../categorias/categoria.service';
+import { RouterModule } from '@angular/router';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -20,6 +21,7 @@ registerLocaleData(localePt);
     MatIconModule,
     MatListModule,
     FormsModule,
+    RouterModule,
     ToastyModule.forRoot()
   ],
   declarations: [NavbarComponent],

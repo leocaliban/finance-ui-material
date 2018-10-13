@@ -13,6 +13,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { NgxMaskModule } from 'ngx-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     CurrencyMaskModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
     NgxMaskModule.forRoot()
   ],
   declarations: [
