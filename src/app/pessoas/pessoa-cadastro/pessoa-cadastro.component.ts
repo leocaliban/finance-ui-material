@@ -6,6 +6,7 @@ import { Pessoa } from '../../core/domain/pessoa';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -18,9 +19,11 @@ export class PessoaCadastroComponent implements OnInit {
   constructor(
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
-    private toastyService: ToastyService) { }
+    private toastyService: ToastyService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.activatedRoute.snapshot.params['codigo']);
   }
 
   salvar(form: FormControl) {

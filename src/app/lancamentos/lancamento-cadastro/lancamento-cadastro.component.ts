@@ -8,6 +8,7 @@ import { Lancamento } from '../../core/domain/lancamento';
 import { LancamentoService } from '../lancamento.service';
 import { FormControl } from '@angular/forms';
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -35,11 +36,13 @@ export class LancamentoCadastroComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
-    private toastyService: ToastyService) { }
+    private toastyService: ToastyService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarCategorias();
     this.carregarPessoas();
+    console.log(this.activatedRoute.snapshot.params['codigo']);
   }
 
   salvar(form: FormControl) {
