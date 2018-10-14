@@ -2,7 +2,7 @@
   <form #lancamentoForm="ngForm" (ngSubmit)="salvar(lancamentoForm)">
     <div fxLayout="row">
       <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
-        <h1>Novo Lançamento</h1>
+        <h1>{{ editando ? 'Edição de' : 'Novo' }} Lançamento</h1>
       </div>
     </div>
 
