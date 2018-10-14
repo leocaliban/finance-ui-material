@@ -43,6 +43,7 @@ export class LancamentoCadastroComponent implements OnInit {
     this.carregarCategorias();
     this.carregarPessoas();
     console.log(this.activatedRoute.snapshot.params['codigo']);
+    console.log(this.lancamentoService.buscarPorCodigo(this.activatedRoute.snapshot.params['codigo']));
   }
 
   salvar(form: FormControl) {
