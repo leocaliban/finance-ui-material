@@ -49,6 +49,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.salvar(this.lancamento)
       .then(() => {
         this.toastyService.success({
@@ -60,6 +68,19 @@ export class LancamentoCadastroComponent implements OnInit {
         form.reset();
 
         this.lancamento = new Lancamento();
+      }).catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+      .then(response => {
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: 'O Lançamento foi alterado.',
+          showClose: true,
+          timeout: 4000
+        });
+        this.lancamento = response;
       }).catch(erro => this.errorHandler.handle(erro));
   }
 
