@@ -13,6 +13,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { CategoriaService } from '../categorias/categoria.service';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -24,7 +25,7 @@ registerLocaleData(localePt);
     RouterModule,
     ToastyModule.forRoot()
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [
     NavbarComponent,
     ToastyModule
