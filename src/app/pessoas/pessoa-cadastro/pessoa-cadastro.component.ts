@@ -7,6 +7,7 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 
 import { ToastyService } from 'ng2-toasty';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoa-cadastro',
@@ -21,9 +22,11 @@ export class PessoaCadastroComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private toastyService: ToastyService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Nova Pessoa');
     const codigoPessoa = this.activatedRoute.snapshot.params['codigo'];
     if (codigoPessoa) {
       this.carregarPessoa(codigoPessoa);
@@ -62,12 +65,14 @@ export class PessoaCadastroComponent implements OnInit {
           timeout: 4000
         });
         this.pessoa = response;
+        this.atualizarTitulo();
       }).catch(erro => this.errorHandler.handle(erro));
   }
 
   carregarPessoa(codigo: number) {
     this.pessoaService.buscarPorCodigo(codigo).then(response => {
       this.pessoa = response;
+      this.atualizarTitulo();
     }).catch(erro => this.errorHandler.handle(erro));
   }
 
@@ -77,6 +82,10 @@ export class PessoaCadastroComponent implements OnInit {
       this.pessoa = new Pessoa();
     }.bind(this), 1);
     this.router.navigate(['/pessoas/novo']);
+  }
+
+  atualizarTitulo() {
+    this.title.setTitle(`Editando: ${this.pessoa.nome}`);
   }
 
   get editando() {

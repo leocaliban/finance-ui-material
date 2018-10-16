@@ -5,6 +5,7 @@ import { PessoaFiltro } from '../pessoa.service';
 import { ToastyService } from 'ng2-toasty';
 import Swal from 'sweetalert2';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -26,9 +27,11 @@ export class PessoasPesquisaComponent implements OnInit {
   constructor(
     private pessoaService: PessoaService,
     private toastyService: ToastyService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de Pessoas');
     this.pesquisar();
     this.pessoas.paginator = this.paginator;
   }
