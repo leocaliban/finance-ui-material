@@ -30,6 +30,14 @@ export class PessoaCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarPessoa(form);
+    } else {
+      this.adicionarPessoa(form);
+    }
+  }
+
+  adicionarPessoa(form: FormControl) {
     this.pessoaService.salvar(this.pessoa)
       .then(() => {
         this.toastyService.success({
@@ -42,6 +50,19 @@ export class PessoaCadastroComponent implements OnInit {
         this.pessoa = new Pessoa();
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  atualizarPessoa(form: FormControl) {
+    this.pessoaService.atualizar(this.pessoa)
+      .then(response => {
+        this.toastyService.success({
+          title: 'Sucesso!',
+          msg: 'A Pessoa foi alterada.',
+          showClose: true,
+          timeout: 4000
+        });
+        this.pessoa = response;
+      }).catch(erro => this.errorHandler.handle(erro));
   }
 
   carregarPessoa(codigo: number) {
