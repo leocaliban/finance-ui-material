@@ -15,6 +15,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamento-routing.module';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    LancamentosRoutingModule
   ],
   declarations: [
     LancamentoCadastroComponent,
