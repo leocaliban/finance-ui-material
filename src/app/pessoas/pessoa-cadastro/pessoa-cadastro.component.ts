@@ -23,8 +23,10 @@ export class PessoaCadastroComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.params['codigo']);
-    console.log(this.pessoaService.buscarPorCodigo(this.activatedRoute.snapshot.params['codigo']));
+    const codigoPessoa = this.activatedRoute.snapshot.params['codigo'];
+    if (codigoPessoa) {
+      this.carregarPessoa(codigoPessoa);
+    }
   }
 
   salvar(form: FormControl) {
@@ -40,6 +42,16 @@ export class PessoaCadastroComponent implements OnInit {
         this.pessoa = new Pessoa();
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  carregarPessoa(codigo: number) {
+    this.pessoaService.buscarPorCodigo(codigo).then(response => {
+      this.pessoa = response;
+    }).catch(erro => this.errorHandler.handle(erro));
+  }
+
+  get editando() {
+    return Boolean(this.pessoa.codigo);
   }
 
 }
