@@ -14,6 +14,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 import { RouterModule } from '@angular/router';
+import { PessoaRoutingModule } from './pessoa-routing.module.ts';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    PessoaRoutingModule,
     NgxMaskModule.forRoot()
   ],
   declarations: [
