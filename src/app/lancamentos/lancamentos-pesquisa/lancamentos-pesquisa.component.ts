@@ -7,6 +7,7 @@ import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { ToastyService } from 'ng2-toasty';
 import Swal from 'sweetalert2';
 import { ErrorHandlerService } from '../../core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -33,9 +34,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(
     private lancamentoService: LancamentoService,
     private toastyService: ToastyService,
-    private errorHandler: ErrorHandlerService) { }
+    private errorHandler: ErrorHandlerService,
+    private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de Lançamentos');
     this.pesquisar();
     this.lancamentos.paginator = this.paginator;
   }
