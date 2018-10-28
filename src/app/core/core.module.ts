@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../seguranca/auth.service';
+import { JwtHelper } from 'angular2-jwt';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -39,6 +40,7 @@ registerLocaleData(localePt);
     CategoriaService,
     AuthService,
     Title,
+    JwtHelper,
     { provide: MatPaginatorIntl, useValue: getPtPaginator() },
     { provide: LOCALE_ID, useValue: 'pt' }
   ]
