@@ -1,0 +1,33 @@
+<div class="form">
+  <form #form="ngForm">
+
+    <div fxLayout="row">
+      <div fxLayout.gt-sm="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <h1>Login</h1>
+      </div>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column">
+      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
+        <input matInput type="email" placeholder="E-mail" name="usuario" required email ngModel #usuario>
+
+
+      </mat-form-field>
+    </div>
+
+    <div fxLayout.gt-sm="row" fxLayout.xs="column">
+      <mat-form-field fxFlex.gt-xs='100%' fxFlex.lt-sm="80%">
+        <input matInput type="password" placeholder="Senha" name="senha" required ngModel #senha>
+
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
+
+      <button type="submit" mat-flat-button color="primary" [disabled]="!form.valid">Login
+        <mat-icon aria-label="Entrar">input</mat-icon>
+      </button>
+
+    </div>
+  </form>
+</div>
