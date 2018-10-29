@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, URLSearchParams } from '@angular/http';
+import { URLSearchParams } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
+
 import { Pessoa } from '../core/domain/pessoa';
 
 export class PessoaFiltro {
@@ -13,21 +15,16 @@ export class PessoaService {
 
   pessoasUrl = 'http://localhost:8080/pessoas';
 
-  constructor(private http: Http) { }
+  constructor(private http: AuthHttp) { }
 
   salvar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new Headers();
-    this.adicionarAuthorization(headers);
-    headers.append('Content-Type', 'application/json');
-    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa), { headers })
+    return this.http.post(this.pessoasUrl, JSON.stringify(pessoa))
       .toPromise()
       .then(response => response.json());
   }
 
   buscarPorCodigo(codigo: number): Promise<Pessoa> {
-    const headers = new Headers();
-    this.adicionarAuthorization(headers);
-    return this.http.get(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.get(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(response => {
         const pessoa = response.json() as Pessoa;
@@ -36,11 +33,8 @@ export class PessoaService {
   }
 
   atualizar(pessoa: Pessoa): Promise<Pessoa> {
-    const headers = new Headers();
-    this.adicionarAuthorization(headers);
-    headers.append('Content-Type', 'application/json');
     return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`,
-      JSON.stringify(pessoa), { headers })
+      JSON.stringify(pessoa))
       .toPromise()
       .then(response => {
         const pessoaAlterada = response.json() as Pessoa;
@@ -50,47 +44,29 @@ export class PessoaService {
 
   pesquisarPorNome(filtro: PessoaFiltro): Promise<any> {
     const parametros = new URLSearchParams();
-    const headers = new Headers();
 
     if (filtro.nome) {
       parametros.set('nome', filtro.nome);
     }
 
-    this.adicionarAuthorization(headers);
-
-    return this.http.get(`${this.pessoasUrl}`,
-      { headers, search: parametros })
+    return this.http.get(`${this.pessoasUrl}`, { search: parametros })
       .toPromise()
       .then(response => response.json().content);
   }
 
   pesquisarTodos(): Promise<any> {
-    const headers = new Headers();
-
-    this.adicionarAuthorization(headers);
-
-    return this.http.get(`${this.pessoasUrl}`, { headers })
+    return this.http.get(`${this.pessoasUrl}`)
       .toPromise()
       .then(response => response.json().content);
   }
 
   excluir(codigo: number): Promise<void> {
-    const headers = new Headers();
-    this.adicionarAuthorization(headers);
-    return this.http.delete(`${this.pessoasUrl}/${codigo}`, { headers })
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`)
       .toPromise()
       .then(() => null);
   }
 
   mudarStatus(codigo: number, ativo: boolean): Promise<void> {
-    const headers = new Headers();
-    this.adicionarAuthorization(headers);
-    headers.append('Content-Type', 'application/json');
-    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers }).toPromise().then(() => null);
-  }
-
-  adicionarAuthorization(headers: Headers) {
-    // tslint:disable-next-line:max-line-length
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJsZW9jYWxpYmFuQGZpbmFuY2UuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm5vbWUiOiJBZG1pbmlzdHJhZG9yIiwiZXhwIjoyNTM5NDc5NjM1LCJhdXRob3JpdGllcyI6WyJST0xFX0NBREFTVFJBUl9DQVRFR09SSUEiLCJST0xFX1BFU1FVSVNBUl9QRVNTT0EiLCJST0xFX1JFTU9WRVJfUEVTU09BIiwiUk9MRV9DQURBU1RSQVJfTEFOQ0FNRU5UTyIsIlJPTEVfUEVTUVVJU0FSX0xBTkNBTUVOVE8iLCJST0xFX1JFTU9WRVJfTEFOQ0FNRU5UTyIsIlJPTEVfQ0FEQVNUUkFSX1BFU1NPQSIsIlJPTEVfUEVTUVVJU0FSX0NBVEVHT1JJQSJdLCJqdGkiOiI3ZTdjN2QxZC01MDYyLTQ4ZWItODJkOS00MTYxZmYzMzlmMzgiLCJjbGllbnRfaWQiOiJhbmd1bGFyIn0.Clw3BhOjegF5gVzevHHKzuTJNM0rMAxsMfO5BLtymtE');
+    return this.http.put(`${this.pessoasUrl}/${codigo}/ativo`, ativo).toPromise().then(() => null);
   }
 }
