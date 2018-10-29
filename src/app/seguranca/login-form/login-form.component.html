@@ -16,7 +16,7 @@
       </mat-form-field>
     </div>
     <div fxLayout="row" fxLayoutAlign.lt-sm="start center" fxLayoutGap.gt-xs="8px" fxLayoutGap.lt-sm="8px">
-      <button type="submit" mat-flat-button color="primary" [disabled]="!form.valid">Login
+      <button type="submit" mat-flat-button color="primary" [disabled]="!form.valid" (click)="login(usuario.value, senha.value)">Login
         <mat-icon aria-label="Entrar">input</mat-icon>
       </button>
     </div>
