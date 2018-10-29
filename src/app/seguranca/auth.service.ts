@@ -31,6 +31,13 @@ export class AuthService {
         console.log('PAYLOAD', this.jwtPayload);
       }).catch(response => {
         console.log('ERR', response);
+        if (response.status === 400) {
+          const responseJson = response.json();
+          if (responseJson.error === 'invalid_grant') {
+            return Promise.reject('Usuário ou senha inválida!');
+          }
+        }
+        return Promise.reject(response);
       });
   }
 
@@ -41,7 +48,7 @@ export class AuthService {
 
   private carregarToken() {
     const token = localStorage.getItem('token');
-     if (token) {
+    if (token) {
       this.armazenarToken(token);
     }
   }
