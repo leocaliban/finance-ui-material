@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastyConfig } from 'ng2-toasty';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(
-    private toastyConfig: ToastyConfig,
-    private router: Router
-  ) {
+  constructor(private toastyConfig: ToastyConfig) {
     this.toastyConfig.theme = 'material';
     this.toastyConfig.position = 'top-right';
-  }
+   }
 
   ngOnInit() {
-  }
-
-  exibirNavbar() {
-    return this.router.url !== '/login';
   }
 }
