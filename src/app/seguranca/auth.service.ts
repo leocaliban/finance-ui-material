@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,14 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
 
   oauthTokenURL = 'http://localhost:8080/oauth/token';
+  jwtPayload: any;
 
   constructor(
-    private http: Http
-  ) { }
+    private http: Http,
+    private jwtHelper: JwtHelper
+  ) {
+    this.carregarToken();
+  }
 
   login(usuario: string, senha: string): Promise<void> {
     const headers = new Headers();
@@ -22,8 +27,22 @@ export class AuthService {
       .toPromise()
       .then(response => {
         console.log('OK', response);
+        this.armazenarToken(response.json().access_token);
+        console.log('PAYLOAD', this.jwtPayload);
       }).catch(response => {
         console.log('ERR', response);
       });
+  }
+
+  private armazenarToken(token: string) {
+    this.jwtPayload = this.jwtHelper.decodeToken(token);
+    localStorage.setItem('token', token);
+  }
+
+  private carregarToken() {
+    const token = localStorage.getItem('token');
+     if (token) {
+      this.armazenarToken(token);
+    }
   }
 }

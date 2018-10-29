@@ -11,6 +11,7 @@ import { getPtPaginator } from '../ptPaginator';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { JwtHelper } from 'angular2-jwt';
 import { CategoriaService } from '../categorias/categoria.service';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
@@ -38,6 +39,7 @@ registerLocaleData(localePt);
     PessoaService,
     CategoriaService,
     AuthService,
+    JwtHelper,
     Title,
     { provide: MatPaginatorIntl, useValue: getPtPaginator() },
     { provide: LOCALE_ID, useValue: 'pt' }
